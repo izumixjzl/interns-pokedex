@@ -71,7 +71,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockPokemon);
 
-      const result = await pokemonRepository.getPokemonByNameOrId('pikachu');
+    const result = await pokemonRepository.getPokemonByNameOrId('pikachu');
 
       expect(mockAxios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/pikachu');
       expect(result).toEqual(mockPokemon.data);
@@ -83,7 +83,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockPokemon);
 
-      const result = await pokemonRepository.getPokemonByNameOrId(25);
+    const result = await pokemonRepository.getPokemonByNameOrId(25);
 
       expect(mockAxios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/25');
       expect(result).toEqual(mockPokemon.data);
@@ -92,7 +92,7 @@ describe('Pokemon Repository', () => {
     it('should return null for 404 errors', async () => {
       mockAxios.get.mockRejectedValue({ response: { status: 404 } });
 
-      const result = await pokemonRepository.getPokemonByNameOrId('nonexistent');
+    const result = await pokemonRepository.getPokemonByNameOrId('nonexistent');
 
       expect(result).toBeNull();
     });
@@ -100,8 +100,8 @@ describe('Pokemon Repository', () => {
     it('should throw error for other API failures', async () => {
       mockAxios.get.mockRejectedValue(new Error('Server Error'));
 
-      await expect(pokemonRepository.getPokemonByNameOrId('pikachu')).rejects.toThrow(
-        'Failed to fetch Pokemon'
+    await expect(pokemonRepository.getPokemonByNameOrId('pikachu')).rejects.toThrow(
+      'Failed to fetch Pokemon'
       );
     });
   });
@@ -117,7 +117,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockSpecies);
 
-      const result = await pokemonRepository.getPokemonSpecies('pikachu');
+    const result = await pokemonRepository.getPokemonSpecies('pikachu');
 
       expect(mockAxios.get).toHaveBeenCalledWith(
         'https://pokeapi.co/api/v2/pokemon-species/pikachu'
@@ -128,7 +128,7 @@ describe('Pokemon Repository', () => {
     it('should return null for 404 errors', async () => {
       mockAxios.get.mockRejectedValue({ response: { status: 404 } });
 
-      const result = await pokemonRepository.getPokemonSpecies('nonexistent');
+    const result = await pokemonRepository.getPokemonSpecies('nonexistent');
 
       expect(result).toBeNull();
     });
@@ -147,7 +147,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockResponse);
 
-      const result = await pokemonRepository.searchPokemon('pik');
+    const result = await pokemonRepository.searchPokemon('pik');
 
       expect(result.count).toBe(1);
       expect(result.results).toHaveLength(1);
@@ -167,7 +167,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockTypes);
 
-      const result = await pokemonRepository.getPokemonTypes();
+    const result = await pokemonRepository.getPokemonTypes();
 
       expect(mockAxios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/type');
       expect(result).toEqual(mockTypes.data.results);
@@ -186,7 +186,7 @@ describe('Pokemon Repository', () => {
       };
       mockAxios.get.mockResolvedValue(mockTypeData);
 
-      const result = await pokemonRepository.getPokemonByType('fire');
+    const result = await pokemonRepository.getPokemonByType('fire');
 
       expect(mockAxios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/type/fire');
       expect(result).toHaveLength(2);
@@ -196,7 +196,7 @@ describe('Pokemon Repository', () => {
     it('should return null for 404 errors', async () => {
       mockAxios.get.mockRejectedValue({ response: { status: 404 } });
 
-      const result = await pokemonRepository.getPokemonByType('nonexistent');
+    const result = await pokemonRepository.getPokemonByType('nonexistent');
 
       expect(result).toBeNull();
     });
